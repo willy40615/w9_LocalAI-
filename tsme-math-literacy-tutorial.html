@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>學測數學素養類型相關題型教學（離線版）</title>
+<style>
+  :root{
+    --bg:#f7f9fc;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --primary:#2563eb;
+    --primary-hover:#1d4ed8;
+    --accent:#059669;
+    --border:#e5e7eb;
+    --code-bg:#1e1e2e;
+    --code-text:#cdd6f4;
+    --warn:#f59e0b;
+    --danger:#dc2626;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Microsoft JhengHei","PingFang TC",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    padding-bottom:4rem;
+  }
+  .container{max-width:900px;margin:0 auto;padding:0 1.2rem}
+  header{
+    background:linear-gradient(135deg,var(--primary),#1e40af);
+    color:#fff;
+    padding:2.5rem 1.2rem;
+    border-radius:0 0 24px 24px;
+    box-shadow:0 10px 25px -5px rgba(37,99,235,0.35);
+  }
+  header h1{font-size:1.75rem;font-weight:800;line-height:1.3;margin-bottom:0.5rem}
+  header p{font-size:1rem;opacity:0.95}
+  .tag{display:inline-block;margin-top:0.75rem;padding:0.35rem 0.9rem;border-radius:999px;border:1px solid rgba(255,255,255,0.4);font-size:0.85rem;color:#e0e7ff;background:rgba(255,255,255,0.1)}
+  .toc{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:1.1rem 1.4rem;
+    margin:1.6rem auto 0;
+    box-shadow:0 4px 6px -2px rgba(0,0,0,0.04);
+  }
+  .toc h2{font-size:1.05rem;color:var(--primary);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.4rem}
+  .toc ol{list-style:decimal inside;padding-left:0.6rem}
+  .toc li{margin:0.3rem 0;font-size:0.95rem;color:var(--muted)}
+  .toc li b{color:var(--text)}
+  section{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:1.8rem 2rem;
+    margin:1.6rem auto;
+    box-shadow:0 6px 18px -6px rgba(0,0,0,0.05);
+  }
+  section h2{
+    font-size:1.35rem;color:var(--primary);margin-bottom:0.9rem;
+    display:flex;align-items:center;gap:0.55rem;border-bottom:2px solid #eff6ff;
+    padding-bottom:0.55rem
+  }
+  section h3{font-size:1.1rem;color:var(--text);margin:1.2rem 0 0.5rem}
+  p{margin:0.6rem 0}
+  ul,ol{margin:0.5rem 0 0.8rem 1.6rem}
+  li{margin:0.3rem 0;color:var(--text)}
+  code{
+    font-family:"Cascadia Code","Consolas",monospace;
+    background:#f3f4f6;padding:0.12rem 0.4rem;border-radius:4px;
+    font-size:0.92rem;color:#111827;border:1px solid #e5e7eb
+  }
+  pre{
+    font-family:"Cascadia Code","Consolas",monospace;
+    background:var(--code-bg);color:var(--code-text);
+    padding:1rem 1.2rem;border-radius:10px;overflow-x:auto;
+    margin:0.8rem 0;border:1px solid #313244;line-height:1.55;font-size:0.9rem
+  }
+  .btn{
+    display:inline-block;background:var(--accent);color:#fff;padding:0.7rem 1.4rem;
+    border-radius:8px;text-decoration:none;font-weight:700;margin-top:0.6rem;
+    border:none;cursor:pointer;font-size:0.95rem
+  }
+  .btn:hover{background:#047857}
+  .callout{
+    border-left:4px solid var(--primary);background:#eff6ff;padding:0.9rem 1.2rem;
+    border-radius:0 10px 10px 0;margin:1rem 0
+  }
+  .callout.warn{border-left-color:var(--warn);background:#fffbeb}
+  .callout.danger{border-left-color:var(--danger);background:#fef2f2}
+  .callout h4{margin:0 0 0.4rem;font-size:0.95rem;color:var(--text)}
+  .callout p{margin:0;color:var(--muted);font-size:0.95rem}
+  .step{
+    display:flex;gap:0.9rem;margin:1rem 0;padding:1rem;border:1px solid var(--border);
+    border-radius:12px;background:#fff
+  }
+  .step .num{
+    flex-shrink:0;width:32px;height:32px;background:var(--primary);color:#fff;
+    border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:0.95rem
+  }
+  .step div{font-size:0.98rem}
+  .step div b{display:block;color:var(--primary);margin-bottom:0.2rem}
+  table{width:100%;border-collapse:collapse;margin:0.8rem 0;font-size:0.92rem}
+  th,td{border:1px solid var(--border);padding:0.6rem 0.8rem;text-align:left}
+  th{background:#f3f4f6;color:var(--muted);font-weight:700}
+  tr:nth-child(even){background:#fafafa}
+  footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.9rem;border-top:1px solid var(--border);margin-top:1rem}
+  .badge{
+    display:inline-block;padding:0.15rem 0.55rem;border-radius:6px;font-size:0.8rem;
+    font-weight:700;margin-left:0.5rem
+  }
+  .badge.offline{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
+  .badge.single{background:#dbeafe;color:#1e3a8a;border:1px solid #bfdbfe}
+  .highlight{background:#fef3c7;padding:0 0.2rem;border-radius:3px}
+  @media(max-width:600px){
+    header{padding:1.6rem 1rem}
+    section{padding:1.2rem 1rem}
+    header h1{font-size:1.4rem}
+  }
+  svg{max-width:100%;height:auto;display:block;margin:0 auto}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>學測數學素養類型相關題型教學</h1>
+  <p>從 installation（安裝與準備）一路做到跑通（製作第一題）的完整離線新手教學</p>
+  <span class="tag badge single">單一 HTML 檔</span>
+  <span class="tag badge offline">離線可用</span>
+  <span class="tag">繁體中文</span>
+</header>
+
+<div class="toc">
+  <h2>📖 本頁目錄</h2>
+  <ol>
+    <li><b>第一部分：</b>什麼是學測數學素養？</li>
+    <li><b>第二部分：</b>學測數學題型分類與結構</li>
+    <li><b>第三部分：</b>数学素養四層能力架構</li>
+    <li><b>第四部分：</b>題型製作流程（從安裝到跑通）</li>
+    <li><b>第五部分：</b>實作範例——制作第一題</li>
+    <li><b>第六部分：</b>跑通檢查清單與常見問題</li>
+    <li><b>第七部分：</b>附錄：提示詞模板與評分標準</li>
+  </ol>
+</div>
+
+<section id="part1">
+  <h2>🎯 第一部分：什麼是學測數學素養？</h2>
+  <p><b>學測（學科能力測驗）</b>是台灣大學入學考試中心主辦的統一考試。其中數學科強調「素養導向」，要求學生不僅會計算，更需能將數學應用於真實情境。</p>
+  <p>數學素養（Mathematical Literacy）在學測中體現為：</p>
+  <ul>
+    <li><b>情境化問題：</b>題目發生在真實生活情境（購物、交通、環保、運動等）。</li>
+    <li><b>多表徵理解：</b>圖表、表格、文字、數據同時出現。</li>
+    <li><b>推理與論證：</b>不只答數字，需說明理由。</li>
+    <li><b>跨領域整合：</b>結合統計、幾何、代數、函數。</li>
+  </ul>
+  <div class="callout">
+    <h4>💡 適合誰閱讀？</h4>
+    <p>教師、命題者、或想了解學測數學素養題型的學生。本教學假設你有基礎數學知識，即可從安裝工具到產出題目。</p>
+  </div>
+  <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="學測數學素養四個面向示意圖">
+    <defs>
+      <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#1e40af"/></linearGradient>
+      <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#047857"/></linearGradient>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6b7280"/></marker>
+    </defs>
+    <rect x="40" y="70" width="150" height="120" rx="12" fill="url(#g1)" stroke="#1e40af" stroke-width="2"/>
+    <text x="115" y="105" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">情境</text>
+    <text x="115" y="130" text-anchor="middle" fill="#dbeafe" font-size="13">Context</text>
+    <rect x="260" y="40" width="150" height="120" rx="12" fill="url(#g2)" stroke="#047857" stroke-width="2"/>
+    <text x="335" y="75" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">內容</text>
+    <text x="335" y="100" text-anchor="middle" fill="#bbf7d0" font-size="13">Content</text>
+    <text x="335" y="125" text-anchor="middle" fill="#bbf7d0" font-size="13">數/代/幾/統/函</text>
+    <rect x="480" y="100" width="150" height="60" rx="12" fill="#e5e7eb" stroke="#6b7280" stroke-width="2"/>
+    <text x="555" y="130" text-anchor="middle" fill="#374151" font-size="14" font-weight="bold">程序</text>
+    <text x="555" y="150" text-anchor="middle" fill="#6b7280" font-size="12">Process</text>
+    <path d="M190 130 H250" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M410 100 H470" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="220" y="120" font-size="12" fill="#6b7280" text-anchor="middle">整合</text>
+    <text x="440" y="90" font-size="12" fill="#6b7280" text-anchor="middle">運算</text>
+    <circle cx="555" cy="210" r="30" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+    <text x="555" y="215" text-anchor="middle" fill="#713f12" font-size="13" font-weight="bold">你</text>
+    <text x="555" y="235" text-anchor="middle" fill="#6b7280" font-size="12">命題者</text>
+    <path d="M630 130 Q660 170 585 205" stroke="#6b7280" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  </svg>
+  <p style="text-align:center;font-size:0.85rem;color:var(--muted);margin-top:0.5rem">圖示：學測數學素養的四個面向（情境、內容、程序、命題者）</p>
+</section>
+
+<section id="part2">
+  <h2>📋 第二部分：學測數學題型分類與結構</h2>
+  <p>學測數學科主要分為兩大類型：</p>
+  <table>
+    <tr><th>類型</th><th>分數</th><th>題數</th><th>特點</th></tr>
+    <tr><td><b>選擇題（單選）</b></td><td>每題 2 分</td><td>約 10-12 題</td><td>四選一，需計算與判斷</td></tr>
+    <tr><td><b>非選擇題（簡答/多選）</b></td><td>每題 4-6 分</td><td>約 4-6 題</td><td>需寫出計算過程與理由</td></tr>
+  </table>
+
+  <h3>題型結構（學測常見）</h3>
+  <ul>
+    <li><b>情境題：</b>給定生活情境，問計算或判斷。</li>
+    <li><b>數據題：</b>給定表格/圖表，問統計或趨勢。</li>
+    <li><b>幾何題：</b>圖形、座標、測量。</li>
+    <li><b>代數題：</b>函數、方程式、不等式。</li>
+    <li><b>綜合題：</b>跨領域，需多步推理。</li>
+  </ul>
+
+  <div class="callout">
+    <h4>📌 學測數學素養評量重點</h4>
+    <ul>
+      <li>理解問題情境與數學化能力。</li>
+      <li>選擇適當的數學工具與方法。</li>
+      <li>執行計算並解釋結果。</li>
+      <li>評估答案的合理性。</li>
+    </ul>
+  </div>
+</section>
+
+<section id="part3">
+  <h2>🧠 第三部分：数学素養四層能力架構</h2>
+  <p>依據學測與 PISA 框架，數學素養可分為四層能力：</p>
+  <table>
+    <tr><th>層次</th><th>能力</th><th>題目設計應關注</th></tr>
+    <tr><td><b>第一層：基礎</b></td><td>讀懂題目、辨識數學概念</td><td>清楚的敘述、明確的數學詞彙</td></tr>
+    <tr><td><b>第二層：應用</b></td><td>將情境數學化、選擇公式</td><td>情境與數學對應、公式選擇</td></tr>
+    <tr><td><b>第三層：分析</b></td><td>計算、推理、論證</td><td>多步驟、解釋理由</td></tr>
+    <tr><td><b>第四層：評估</b></td><td>判斷答案合理性、反思</td><td>答案檢驗、情境合理性</td></tr>
+  </table>
+
+  <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="四層能力架構圖">
+    <defs>
+      <linearGradient id="layer1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#dbeafe"/><stop offset="100%" stop-color="#bfdbfe"/></linearGradient>
+      <linearGradient id="layer2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#dcfce7"/><stop offset="100%" stop-color="#bbf7d0"/></linearGradient>
+      <linearGradient id="layer3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fef3c7"/><stop offset="100%" stop-color="#fde68a"/></linearGradient>
+      <linearGradient id="layer4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fce7f3"/><stop offset="100%" stop-color="#fbcfe8"/></linearGradient>
+    </defs>
+    <rect x="100" y="40" width="500" height="50" rx="8" fill="url(#layer4)" stroke="#db2777" stroke-width="2"/>
+    <text x="350" y="70" text-anchor="middle" fill="#9d174d" font-size="14" font-weight="bold">第四層：評估（判斷合理性、反思）</text>
+    <rect x="100" y="100" width="500" height="50" rx="8" fill="url(#layer3)" stroke="#ca8a04" stroke-width="2"/>
+    <text x="350" y="130" text-anchor="middle" fill="#713f12" font-size="14" font-weight="bold">第三層：分析（計算、推理、論證）</text>
+    <rect x="100" y="160" width="500" height="50" rx="8" fill="url(#layer2)" stroke="#059669" stroke-width="2"/>
+    <text x="350" y="190" text-anchor="middle" fill="#14532d" font-size="14" font-weight="bold">第二層：應用（數學化、選擇公式）</text>
+    <rect x="100" y="220" width="500" height="50" rx="8" fill="url(#layer1)" stroke="#2563eb" stroke-width="2"/>
+    <text x="350" y="250" text-anchor="middle" fill="#1e40af" font-size="14" font-weight="bold">第一層：基礎（讀懂、辨識概念）</text>
+  </svg>
+  <p style="text-align:center;font-size:0.85rem;color:var(--muted);margin-top:0.5rem">圖示：學測數學素養的四層能力架構（由下而上）</p>
+</section>
+
+<section id="part4">
+  <h2>🛠️ 第四部分：題型製作流程（從安裝到跑通）</h2>
+  <p>本部分假設你使用 OpenCode + 本地模型（如 Ollama + Qwen/Llama）來製作題型。流程如下：</p>
+
+  <div class="step">
+    <div class="num">1</div>
+    <div><b>安裝工具：</b>安裝 OpenCode 與 Ollama，拉取本地模型（如 qwen2.5:7b）。</div>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <div><b>連線模型：</b>在 OpenCode 設定中將 Ollama 設為提供者，端口 http://localhost:11434。</div>
+  </div>
+  <div class="step">
+    <div class="num">3</div>
+    <div><b>定義題型：</b>決定要製作的題型（選擇題/非選擇題）、情境、內容領域、難度。</div>
+  </div>
+  <div class="step">
+    <div class="num">4</div>
+    <div><b>輸入提示詞：</b>使用系統提示詞定義角色與格式，再輸入使用者提示詞下達需求。</div>
+  </div>
+  <div class="step">
+    <div class="num">5</div>
+    <div><b>檢查修正：</b>檢查 AI 產出的題目是否符合學測風格與正確性。</div>
+  </div>
+  <div class="step">
+    <div class="num">6</div>
+    <div><b>跑通：</b>成功產出一題可直接使用的數學素養題型。</div>
+  </div>
+
+  <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="題型製作流程圖">
+    <defs><marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/></marker></defs>
+    <rect x="40" y="40" width="150" height="60" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="115" y="62" text-anchor="middle" fill="#1e40af" font-size="13" font-weight="bold">1. 安裝工具</text>
+    <text x="115" y="80" text-anchor="middle" fill="#6b7280" font-size="11">OpenCode + Ollama</text>
+    <rect x="230" y="40" width="150" height="60" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="305" y="62" text-anchor="middle" fill="#1e40af" font-size="13" font-weight="bold">2. 連線模型</text>
+    <text x="305" y="80" text-anchor="middle" fill="#6b7280" font-size="11">端口 11434</text>
+    <rect x="420" y="40" width="150" height="60" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="495" y="62" text-anchor="middle" fill="#1e40af" font-size="13" font-weight="bold">3. 定義題型</text>
+    <text x="495" y="80" text-anchor="middle" fill="#6b7280" font-size="11">情境/內容/難度</text>
+    <rect x="250" y="160" width="200" height="70" rx="8" fill="#dcfce7" stroke="#059669" stroke-width="2"/>
+    <text x="350" y="182" text-anchor="middle" fill="#14532d" font-size="14" font-weight="bold">4. 輸入提示詞</text>
+    <text x="350" y="202" text-anchor="middle" fill="#166534" font-size="12">系統+使用者</text>
+    <rect x="250" y="270" width="200" height="50" rx="8" fill="#fef3c7" stroke="#ca8a04" stroke-width="2"/>
+    <text x="350" y="292" text-anchor="middle" fill="#713f12" font-size="13" font-weight="bold">5. 跑通第一題</text>
+    <path d="M190 70 H220" stroke="#94a3b8" stroke-width="2" marker-end="url(#a2)"/>
+    <path d="M380 70 H410" stroke="#94a3b8" stroke-width="2" marker-end="url(#a2)"/>
+    <path d="M350 130 Q350 150 350 155" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#a2)"/>
+    <path d="M350 230 Q350 250 350 255" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#a2)"/>
+  </svg>
+  <p style="text-align:center;font-size:0.85rem;color:var(--muted);margin-top:0.5rem">圖示：學測數學素養題型製作的五個步驟</p>
+</section>
+
+<section id="part5">
+  <h2>🛠️ 第五部分：實作範例——製作第一題</h2>
+  <p>現在我們用 OpenCode 與本地模型，製作一題「學測數學素養」題型。</p>
+
+  <h3>步驟 1：建立新對話</h3>
+  <p>在 OpenCode 點選「新對話」，確認目前使用的模型是你設定的本地 Ollama 模型（例如 <code>qwen2.5:7b</code>）。</p>
+
+  <h3>步驟 2：輸入系統提示詞（System Prompt）</h3>
+  <p>系統提示詞告訴 AI 扮演什麼角色、要產出什麼格式。請複製下方內容貼入：</p>
+  <pre>你是一位學測數學命題專家，熟悉學測數學素養題型（情境題、數據題、幾何題、代數題、綜合題）。
+請協助我製作學測數學素養題型，並嚴格以 JSON 格式輸出，不要加上任何說明文字。
+
+JSON 欄位如下：
+{
+  "id": "題目編號（例如 TSME-001）",
+  "title": "題目標題",
+  "context": "真實生活情境描述（2-3 句話）",
+  "content": "涉及的數學內容領域（例如：數與運算、代數、幾何、統計、函數）",
+  "process": "所需的數學素養程序（例如：情境化、數學化、運算、解釋、論證、評估）",
+  "question": "具體問題（中文）",
+  "type": "題型（選擇題/非選擇題）",
+  "options": ["選項 A", "選項 B", "選項 C", "選項 D"]（若是選擇題才需要，否則為 []）,
+  "correctAnswer": "正確答案",
+  "explanation": "詳細解答說明與步驟",
+  "difficulty": "難易度（基礎/應用/分析/評估）",
+  "literacyDimension": ["情境","內容","程序","評估"],
+  "score": "分數（選擇題 2 分，非選擇題 4-6 分）"
+}
+
+請確保輸出純粹的 JSON，可直接被程式解析。</pre>
+
+  <h3>步驟 3：輸入使用者提示詞（User Prompt）</h3>
+  <p>接著在對話框輸入具體題目需求：</p>
+  <pre>請製作一題學測數學素養題型，國中/高中程度（約 15-18 歲）。
+
+情境：校園節能計畫。某高中 5 個班級的用電量（單位：度）分別為：甲班 120、乙班 135、丙班 110、丁班 145、戊班 130。學校希望減少用電，目標是讓班級平均用電量低於 125 度。
+
+請設計一題「數據題」，要求學生計算平均值、判斷哪些班級超過目標，並說明如何分配節能任務。題目需包含情境描述、問題、正確答案與解答步驟，並以 JSON 格式輸出。</pre>
+
+  <h3>步驟 4：檢查 AI 回覆</h3>
+  <p>本地模型會在幾秒到幾十秒內回覆 JSON。範例如下（實際內容會隨模型而異）：</p>
+  <pre>{
+  "id": "TSME-001",
+  "title": "校園節能計畫用電分析",
+  "context": "某高中 5 個班級的用電量（度）分別為：甲班 120、乙班 135、丙班 110、丁班 145、戊班 130。學校目標是讓班級平均用電量低於 125 度。",
+  "content": "統計、數據分析",
+  "process": "情境化、數學化、運算、解釋",
+  "question": "請計算目前 5 個班級的平均用電量，並判斷是否達到學校目標。若未達標，請說明哪些班級需要減少用電，以及總共需要減少多少度？",
+  "type": "非選擇題",
+  "options": [],
+  "correctAnswer": "平均用電量 128 度，未達標（需低於 125 度）。需減少 15 度；丁班超標 20 度，乙班超標 10 度，戊班超標 5 度。",
+  "explanation": "平均 = (120+135+110+145+130)/5 = 640/5 = 128 度。目標 125 度，需減少 3 度×5 = 15 度。丁班 145-125=20、乙班 135-125=10、戊班 130-125=5，總超標 35 度，但只需減少 15 度即可達標。",
+  "difficulty": "應用",
+  "literacyDimension": ["情境","內容","程序","評估"],
+  "score": "6 分"
+}</pre>
+
+  <div class="callout">
+    <h4>✅ 跑通標準</h4>
+    <p>如果你收到類似上面的 JSON，且內容合理，就代表 OpenCode + 本地模型已成功跑通學測數學素養題型製作。</p>
+  </div>
+
+  <h3>步驟 5：將題目匯出為 HTML 試卷（選擇性）</h3>
+  <p>你可以要求 OpenCode 將 JSON 轉成可列印的 HTML 試卷，例如輸入：</p>
+  <pre>請將上面的 JSON 題目轉成一個單一 HTML 檔，包含題目、選項、答案區與解答說明，版面簡潔適合列印。</pre>
+</section>
+
+<section id="part6">
+  <h2>✅ 第六部分：跑通檢查清單與常見問題</h2>
+
+  <h3>跑通檢查清單</h3>
+  <table>
+    <tr><th>✔ 項目</th><th>確認方式</th></tr>
+    <tr><td>OpenCode 已安裝並啟動</td><td>開啟軟體可見對話介面</td></tr>
+    <tr><td>Ollama 在背景運行</td><td>系統托盤有 Ollama 圖示</td></tr>
+    <tr><td>本地模型已拉取</td><td>執行 <code>ollama list</code> 可見模型名稱</td></tr>
+    <tr><td>OpenCode 已連線 Ollama</td><td>設定中顯示「連線成功」，端口 11434</td></tr>
+    <tr><td>成功產生一題學測數學素養題</td><td>對話框回覆合理的 JSON 題目</td></tr>
+  </table>
+
+  <h3>常見問題（Q&amp;A）</h3>
+  <details>
+    <summary>Q1. 回覆速度很慢，正常嗎？</summary>
+    <p>A：本地模型完全靠你電腦的 CPU/顯卡運算，沒有雲端伺服器加速。使用較小模型（如 3B）或開啟 GPU 加速會比較快；首次啟動模型也需要較長載入時間。</p>
+  </details>
+  <details>
+    <summary>Q2. JSON 格式有錯誤怎麼辦？</summary>
+    <p>A：在系統提示詞中再強調「只輸出純 JSON，不要加 Markdown 程式碼區塊標記」；若仍錯誤，可請 OpenCode 幫你修正 JSON。</p>
+  </details>
+  <details>
+    <summary>Q3. 完全離線可以嗎？</summary>
+    <p>A：可以。安裝 OpenCode 與 Ollama、下載模型需要網路；完成後，只要不重新安裝或下載新模型，全部可離線運行。</p>
+  </details>
+  <details>
+    <summary>Q4. 可以換其他本地模型嗎？</summary>
+    <p>A：可以。Ollama 支援許多模型，例如 <code>ollama pull llama3.1:8b</code>，然後在 OpenCode 設定中把模型名稱改成對應名稱即可。</p>
+  </details>
+  <details>
+    <summary>Q5. 製作出的題目可以用在課堂或模擬考嗎？</summary>
+    <p>A：可以，但建議教師先檢查題目正確性與難度，再調整適合自班學生的情境與語言。</p>
+  </details>
+</section>
+
+<section id="appendix">
+  <h2>📎 附錄：可複製的完整提示詞模板與評分標準</h2>
+  <h3>系統提示詞（System Prompt）</h3>
+  <pre>你是一位學測數學命題專家，熟悉學測數學素養題型。
+請協助製作學測數學素養題型，嚴格以 JSON 格式輸出，不要加任何說明。
+欄位：id, title, context, content, process, question, type, options, correctAnswer, explanation, difficulty, literacyDimension, score。
+請確保輸出純粹 JSON。</pre>
+  <h3>使用者提示詞範例（User Prompt）</h3>
+  <pre>請製作一題學測數學素養題型，情境為「校園節能計畫」，類型為數據題，要求計算平均值並判斷達標與否，輸出 JSON。</pre>
+
+  <h3>學測數學評分標準（參考）</h3>
+  <table>
+    <tr><th>項目</th><th>配分</th><th>說明</th></tr>
+    <tr><td>概念理解</td><td>20%</td><td>正確辨識數學概念與情境</td></tr>
+    <tr><td>數學化</td><td>20%</td><td>將情境轉為數學模型</td></tr>
+    <tr><td>計算與推理</td><td>30%</td><td>正確計算與多步推理</td></tr>
+    <tr><td>解釋與論證</td><td>20%</td><td>清楚說明理由與步驟</td></tr>
+    <tr><td>評估與反思</td><td>10%</td><td>判斷答案合理性</td></tr>
+  </table>
+</section>
+
+<footer>
+  <p>學測數學素養類型相關題型教學</p>
+  <p style="font-size:0.85rem;opacity:0.7">單一自包含 HTML 檔 · 圖片皆以 SVG 內嵌 · 離線亦可完整顯示</p>
+</footer>
+
+</body>
+</html>
